@@ -16,15 +16,26 @@ const Shop = () => {
         This is shop page{" "}
       </div>
       <div className="grid grid-cols-12 w-screen gap-y-3 gap-x-2">
-        <div className="col-span-12 md:col-start-2 md:col-span-10 p-3 lg:col-span-8 xl:col-span-9  grid grid-cols-12 gap-0 md:gap-3 lg:gap-5">
+        <div className="col-span-12 md:col-start-2 md:col-span-10 p-7 lg:col-span-8 xl:col-span-9  grid grid-cols-12 gap-0 md:gap-3 lg:gap-5">
           {produts.map((product: product, i) => {
             return (
-              // <>
-              //   <Products key={product.id || i} product={product} />
-              //   <Products key={product.id || i} product={product} />
-              <Products key={product.id || i} product={product} />
-              //   <Products key={product.id || i} product={product} />
-              // </>
+              <>
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+                <Products key={product.id || i} product={product} />
+              </>
             );
           })}
         </div>
