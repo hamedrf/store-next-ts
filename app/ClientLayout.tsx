@@ -1,5 +1,5 @@
 "use client";
-import { store } from "@/components/redux/store";
+import { store } from "@/hook/redux/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 
@@ -8,7 +8,14 @@ const ClientLyout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5,
+        retry: 3,
+      },
+    },
+  });
   return (
     <>
       <QueryClientProvider client={queryClient}>

@@ -1,22 +1,14 @@
 "use client";
-import {} from "@/components/redux/productsSlice";
-import { RootState } from "@/components/redux/store";
-import { UseFetchProducts } from "@/hooks/api/useFetchProduts";
-import { useEffect } from "react";
+import { RootState } from "@/hook/redux/store";
+import FetchProducts from "@/components/api/FetchProducts";
 import { useSelector } from "react-redux";
-// import { useEffect } from "react";
 
 const Shop = () => {
-  const count = useSelector((state: RootState) => state);
-  // const dispatch: AppDispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(count);
-  });
-  UseFetchProducts();
+  const produts = useSelector((state: RootState) => state.productsSlice);
 
   return (
     <>
+      <FetchProducts />
       <div className="flex justify-center w-full items-center h-40 text-4xl font-medium bg-cyan-300">
         {" "}
         This is shop page{" "}
@@ -28,6 +20,7 @@ const Shop = () => {
         <div className="col-span-12 md:col-start-2 md:col-span-10 lg:col-span-4 xl:col-span-3 bg-teal-400">
           f
         </div>
+        <button onClick={() => console.log(produts)}>click</button>
       </div>
     </>
   );
