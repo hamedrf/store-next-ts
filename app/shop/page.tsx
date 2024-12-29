@@ -13,10 +13,6 @@ const Shop = () => {
   return (
     <>
       <FetchProducts />
-      <div className="flex justify-center w-full items-center h-40 text-4xl font-medium bg-cyan-300">
-        {" "}
-        This is shop page{" "}
-      </div>
       <div className="grid grid-cols-12 w-screen gap-y-3 gap-x-2">
         <div className="col-span-12 md:col-start-2 md:col-span-10 p-7 lg:col-span-8 xl:col-span-9  grid grid-cols-12 2xl:grid-cols-5 gap-0 md:gap-3 lg:gap-5">
           {produts.show.map((product: product, i) => {
