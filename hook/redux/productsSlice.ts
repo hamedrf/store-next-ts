@@ -30,7 +30,11 @@ export interface product {
   quantity: number;
   pic: string;
 }
-const initialState: product[] = [];
+const initialState: {
+  show: product[];
+  all: product[];
+  filter: string[];
+} = { show: [], all: [], filter: [] };
 
 const productsSlice = createSlice({
   name: "products",
@@ -38,7 +42,8 @@ const productsSlice = createSlice({
   reducers: {
     // Action to fetch and add products to the state
     fetchData: (state, action: { payload: product[] }) => {
-      state.push(...action.payload);
+      state.all.push(...action.payload);
+      state.show.push(...action.payload);
     },
   },
 });

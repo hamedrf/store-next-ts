@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Products = ({ product }: { product: product }) => {
   return (
-    <div className="col-span-10 md:col-span-6  xl:col-span-4 2xl:col-span-3 aspect-[3/4] overflow-hidden justify-between border rounded-3xl flex flex-col py-5">
+    <div className="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-1 md:aspect-[3/4] overflow-hidden justify-between border rounded-3xl flex flex-row-reverse md:flex-col py-5">
       <div
         className=""
         style={{
@@ -18,12 +18,14 @@ const Products = ({ product }: { product: product }) => {
           height={1000}
         />
       </div>
-      <div className="px-4">
-        <h1 className="float-right">{product.name}</h1>
-      </div>
-      <div className="flex justify-between px-6">
-        <h3>{product.price}</h3>
-        <button>buy</button>
+      <div className="flex justify-between flex-col w-full h-full">
+        <div className="px-4">
+          <h1 className="float-right">{product.name}</h1>
+        </div>
+        <div className="flex justify-between px-6">
+          <h3>{product.price}</h3>
+          <button>buy</button>
+        </div>
       </div>
     </div>
   );
