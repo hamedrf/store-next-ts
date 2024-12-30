@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+body html {
+  direction: rtl;
+}
+:root {
+  --color-main: #a2d2ff;
+  --color-second: #ede8f5;
+  --color-third: #9ad5ca;
+  --color-four: #ffeea3;
+  --color-gradient-main: #adb9e3;
+  --color-gradient-second: #acdde7;
+  --color-gradient-main-dark: #8697c4;
+  --color-gradient-second-dark: #3d52a0;
+  --color-txt-dark: #002e5a;
+  --color-txt: #fff;
+}
+
+/* aroww filter  */
 .parent-arrow div.arrow {
   width: 1rem;
   height: 1rem;
@@ -47,4 +64,190 @@
 .parent-arrow:hover div.arrow::before {
   border-color: rgb(0, 174, 255);
   transform: scale(0.9);
+}
+
+/* navbar styles  */
+
+#nav-icon {
+  width: 2rem;
+  height: 1.5rem;
+  margin: auto;
+  position: relative;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+#nav-icon span {
+  display: block;
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background: var(--color-main);
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+#nav-icon span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-icon span:nth-child(2) {
+  top: 9px;
+}
+
+#nav-icon span:nth-child(3) {
+  top: 18px;
+}
+
+#nav-icon.open span:nth-child(1) {
+  top: 9px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+#nav-icon.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+#nav-icon.open span:nth-child(3) {
+  top: 9px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+/* hover nav items  */
+
+.nav-link:hover {
+  color: var(--color-main) !important;
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+.nav-link {
+  position: relative;
+  transition: 0.3s;
+  margin: 0.25rem 0.75rem;
+  font-weight: bold !important;
+}
+.nav-link::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-main);
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  transition: 0.5s;
+  transform: translateY(10px);
+  opacity: 0;
+}
+.nav-link::before {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-main);
+  position: absolute;
+  top: 0px;
+  right: 0;
+  transition: 0.5s;
+  transform: translateY(-10px);
+  opacity: 0;
+}
+.nav-link:hover::after,
+.nav-link:hover::before {
+  transform: translateY(0px);
+  height: 2px;
+  opacity: 1;
+}
+
+/* zoom effect styles */
+.parent-zoom-effect {
+  transform-origin: 50% 50%;
+}
+.zoom-effect {
+  opacity: 0;
+  display: block;
+  transform: rotateX(-100deg) translateY(-501%) skew(0deg, 8deg) scale(0.8);
+}
+
+/* btn styles */
+
+.btn-main {
+  background-color: var(--color-main) !important;
+  color: var(--color-txt-dark) !important;
+  overflow: hidden;
+  border: none;
+}
+.btn-second:hover {
+  background-color: var(--color-second) !important;
+}
+.btn-second:active {
+  background-color: var(--color-second) !important;
+  color: var(--color-txt-dark) !important;
+}
+.btn-second {
+  background-color: var(--color-second) !important;
+  overflow: hidden;
+  border: none;
+}
+.btn-main:hover {
+  background-color: var(--color-main);
+  color: var(--color-txt-dark);
+}
+.btn-main:active {
+  background-color: var(--color-main) !important;
+}
+.btn {
+  outline: 0.1px solid rgba(0, 0, 0, 0.278);
+}
+.btn:hover::before {
+  width: 100%;
+  right: 0;
+}
+.btn::before {
+  content: "";
+  border-radius: inherit;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #ffffff40;
+  width: 0%;
+  height: 100%;
+  transition: 0.5s;
+}
+.btn:hover::after {
+  width: 100%;
+  left: 0;
+  transition: 1s;
+}
+.btn::after {
+  content: "";
+  border-radius: inherit;
+  top: 0;
+  right: 0;
+  position: absolute;
+  background-color: #ffffff40;
+  width: 0%;
+  height: 100%;
+  transition: 0.5s;
 }

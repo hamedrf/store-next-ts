@@ -22,7 +22,7 @@ const Shop = () => {
         <div className="col-span-12 md:col-start-2 md:col-span-10 lg:col-span-4 xl:col-span-3 border rounded-3xl py-8 px-6">
           <FilterField
             type="boolean"
-            field="hamedd"
+            field="hello"
             options={[
               { fieldName: "hamed", value: false },
               { fieldName: "as", value: false },

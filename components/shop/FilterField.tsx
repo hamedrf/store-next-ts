@@ -43,7 +43,7 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
         onClick={toggleContent}
       >
         <div className="arrow "></div>
-        <span>click</span>
+        <span>{props.field}</span>
       </div>
       <div
         ref={contentRef}
@@ -54,7 +54,7 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
             return (
               <div className="text-3xl flex p-5 border-b" key={i}>
                 <label htmlFor={element.fieldName} className="w-full px-5 ">
-                  asdf
+                  {element.fieldName}
                 </label>
                 <input
                   id={element.fieldName}
