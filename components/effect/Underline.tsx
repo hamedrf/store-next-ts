@@ -6,10 +6,9 @@ import { useInView } from "react-intersection-observer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export enum colors {
-  main = "bg-blue-500", // Tailwind کلاس رنگ اصلی
-  second = "bg-red-500", // Tailwind کلاس رنگ دوم
+  main = "main",
+  second = "second",
 }
-
 interface UnderlineProps {
   text: string;
   delay?: number;
@@ -39,17 +38,12 @@ const Underline: React.FC<UnderlineProps> = ({
   }, [inView, elementRef.current]);
 
   return (
-    <span className="relative inline-block" ref={ref}>
+    <span className="position-relative" ref={ref}>
       <span>{text}</span>
       <span
-        className={`absolute rounded-sm ${color}`}
+        className={`position-absolute  rounded-5 bg-${color}`}
         ref={elementRef}
-        style={{
-          height: "13%",
-          right: 0,
-          width: "0%",
-          bottom: "-16%",
-        }}
+        style={{ height: "13%", right: "0px", width: "0%", bottom: "-16%" }}
       ></span>
     </span>
   );

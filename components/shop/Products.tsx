@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Products = ({ product }: { product: product }) => {
   return (
-    <div className="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-1 md:aspect-[3/4] overflow-hidden justify-between border rounded-3xl flex flex-row-reverse md:flex-col py-5">
+    <div className="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-1 md:aspect-[3/4] overflow-hidden justify-between border rounded-3xl flex  md:flex-col py-5">
       <div
         className=""
         style={{

@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body html {
-  direction: rtl;
+body,
+html {
+  padding-top: 5vh;
 }
 :root {
   --color-main: #a2d2ff;

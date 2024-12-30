@@ -1,0 +1,10 @@
+/* scoped-bootstrap.css */
+.scoped-bootstrap {
+  all: unset; /* جلوگیری از انتشار استایل‌ها */
+  display: revert; /* بازگردانی پیش‌فرض */
+}
+
+.scoped-bootstrap * {
+  all: unset;
+  display: revert;
+}

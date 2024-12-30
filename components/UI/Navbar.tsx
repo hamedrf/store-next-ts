@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import MainBtn, { colorBtn } from "./MainBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import {
   faCode,
   faHome,
@@ -19,7 +20,7 @@ const MyNavbar = () => {
     }
   };
   return (
-    <div className=" d-flex justify-content-center align-items-center row m-0">
+    <div className=" d-flex justify-content-center align-items-center row m-0 ">
       <div
         dir="ltr"
         className="d-flex z-3 justify-content-center align-items-center p-1 p-md-3 position-absolute top-0"

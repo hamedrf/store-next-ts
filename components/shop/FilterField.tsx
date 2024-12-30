@@ -24,9 +24,11 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
           maxHeight: 0,
           duration: 0.5,
           ease: "power2.out",
+          overflow: "hidden",
         });
       } else {
         gsap.to(contentRef.current, {
+          overflowY: "scroll",
           maxHeight: 200,
           duration: 1,
           ease: "power2.out",
@@ -47,12 +49,13 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
       </div>
       <div
         ref={contentRef}
-        className="text-right  overflow-hidden max-h-0 rounded"
+        className="text-right  max-h-0 rounded"
+        style={{ overflow: "hidden" }}
       >
         {props.type == "boolean" ? (
           props.options.map((element, i) => {
             return (
-              <div className="text-3xl flex p-5 border-b" key={i}>
+              <div className="text-3xl flex !p-5 border-b" key={i}>
                 <label htmlFor={element.fieldName} className="w-full px-5 ">
                   {element.fieldName}
                 </label>
