@@ -6,9 +6,14 @@ import Products from "@/components/shop/Products";
 import { product } from "@/hook/redux/productsSlice";
 
 import FilterField from "@/components/shop/FilterField";
+import { useEffect } from "react";
 
 const Shop = () => {
   const produts = useSelector((state: RootState) => state.productsSlice);
+
+  useEffect(() => {
+    console.log(produts);
+  });
 
   return (
     <>
@@ -22,18 +27,20 @@ const Shop = () => {
         <div className="col-span-12 md:col-start-2 md:col-span-10 lg:col-span-4 xl:col-span-3 border rounded-3xl py-8 px-6">
           <FilterField
             type="boolean"
-            field="hello"
+            fieldName="comments"
+            target="name"
             options={[
-              { fieldName: "hamed", value: false },
-              { fieldName: "as", value: false },
+              { fieldName: "hamed", value: "hamed" },
+              { fieldName: "aadsfs", value: "hamed2" },
             ]}
           />
           <FilterField
             type="boolean"
-            field="asd"
-            options={[{ fieldName: "as", value: false }]}
+            target="category"
+            fieldName="category"
+            options={[{ fieldName: "asdfadfsadfsadfs", value: "3" }]}
           />
-          <FilterField type="range" field="hello" />
+          <FilterField type="range" fieldName="name" target="pic" />
         </div>
         <button onClick={() => console.log(produts)}>click</button>
       </div>

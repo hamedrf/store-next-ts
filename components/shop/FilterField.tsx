@@ -1,29 +1,35 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { gsap } from "gsap";
+import { filterdata, product } from "@/hook/redux/productsSlice";
+import { AppDispatch } from "@/hook/redux/store";
+import { useDispatch } from "react-redux";
 
 type Range = {
   type: "range";
-  field: string;
+  fieldName: string;
+  target: keyof product;
 };
 
 type Boolean = {
   type: "boolean";
-  field: string;
-  options: { fieldName: string; value: boolean }[];
+  fieldName: string;
+  target: keyof product;
+  options: { fieldName: string; value: string }[];
 };
 
 const FilterField: React.FC<Boolean | Range> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  const dispatch: AppDispatch = useDispatch();
 
   const toggleContent = () => {
     if (contentRef.current) {
       if (isOpen) {
         gsap.to(contentRef.current, {
           maxHeight: 0,
-          duration: 0.5,
-          ease: "power2.out",
+          duration: 1,
+          ease: "bounce.out",
           overflow: "hidden",
         });
       } else {
@@ -31,7 +37,7 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
           overflowY: "scroll",
           maxHeight: 200,
           duration: 1,
-          ease: "power2.out",
+          ease: "power4.out",
         });
       }
       setIsOpen(!isOpen);
@@ -45,7 +51,7 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
         onClick={toggleContent}
       >
         <div className="arrow "></div>
-        <span>{props.field}</span>
+        <span>{props.fieldName}</span>
       </div>
       <div
         ref={contentRef}
@@ -56,11 +62,24 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
           props.options.map((element, i) => {
             return (
               <div className="text-3xl flex !p-5 border-b" key={i}>
-                <label htmlFor={element.fieldName} className="w-full px-5 ">
+                <label
+                  htmlFor={element.fieldName}
+                  className="w-full px-5 "
+                  // onClick={() =>
+                  //   dispatch(
+                  //     filterdata({ target: props.target, value: element.value })
+                  //   )
+                  // }
+                >
                   {element.fieldName}
                 </label>
                 <input
                   id={element.fieldName}
+                  onClick={() =>
+                    dispatch(
+                      filterdata({ target: props.target, value: element.value })
+                    )
+                  }
                   type="checkbox"
                   className="w-5 "
                 />

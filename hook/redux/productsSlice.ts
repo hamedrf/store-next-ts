@@ -30,10 +30,14 @@ export interface product {
   quantity: number;
   pic: string;
 }
+interface filter {
+  target: keyof product;
+  value: string;
+}
 const initialState: {
   show: product[];
   all: product[];
-  filter: string[];
+  filter: filter[];
 } = { show: [], all: [], filter: [] };
 
 const productsSlice = createSlice({
@@ -45,9 +49,27 @@ const productsSlice = createSlice({
       state.all.push(...action.payload);
       state.show.push(...action.payload);
     },
+    filterdata: (state, action: { payload: filter }) => {
+      const exists = state.filter.some(
+        (item) =>
+          item.target === action.payload.target &&
+          item.value === action.payload.value
+      );
+      if (exists) {
+        state.filter = state.filter.filter(
+          (item) =>
+            !(
+              item.target === action.payload.target &&
+              item.value === action.payload.value
+            )
+        );
+      } else {
+        state.filter.push(action.payload);
+      }
+    },
   },
 });
 
 // Exporting the fetchData action to use it in other parts of the app
-export const { fetchData } = productsSlice.actions;
+export const { fetchData, filterdata } = productsSlice.actions;
 export default productsSlice.reducer;
