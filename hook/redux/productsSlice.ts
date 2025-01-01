@@ -29,6 +29,8 @@ export interface product {
   price: number;
   quantity: number;
   pic: string;
+  updated_at: string;
+  slug: string;
 }
 interface filter {
   target: keyof product;
@@ -46,8 +48,8 @@ const productsSlice = createSlice({
   reducers: {
     // Action to fetch and add products to the state
     fetchData: (state, action: { payload: product[] }) => {
-      state.all.push(...action.payload);
-      state.show.push(...action.payload);
+      state.all = action.payload;
+      state.show = action.payload;
     },
     filterdata: (state, action: { payload: filter }) => {
       const exists = state.filter.some(

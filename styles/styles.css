@@ -5,6 +5,7 @@
 body,
 html {
   padding-top: 5vh;
+  direction: rtl;
 }
 :root {
   --color-main: #a2d2ff;

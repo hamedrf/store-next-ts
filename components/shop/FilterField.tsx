@@ -47,7 +47,7 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
   return (
     <div className="w-full mx-auto text-center border">
       <div
-        className="flex justify-end parent-arrow py-4 cursor-pointer relative "
+        className="flex justify-start parent-arrow py-4 cursor-pointer relative "
         onClick={toggleContent}
       >
         <div className="arrow "></div>
