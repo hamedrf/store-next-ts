@@ -66,6 +66,10 @@ const productsSlice = createSlice({
       } else {
         state.filter.push(action.payload);
       }
+      // set filter
+      state.show = state.all.filter((product) =>
+        state.filter.every((filter) => product[filter.target] === filter.value)
+      );
     },
   },
 });

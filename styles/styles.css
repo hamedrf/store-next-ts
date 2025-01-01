@@ -19,6 +19,13 @@ html {
   --color-txt: #fff;
 }
 
+.bg-main {
+  background: var(--color-main);
+}
+.bg-second {
+  background-color: var(--color-second);
+}
+
 /* aroww filter  */
 .parent-arrow div.arrow {
   width: 1rem;

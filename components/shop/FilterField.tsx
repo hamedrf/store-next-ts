@@ -61,15 +61,10 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
         {props.type == "boolean" ? (
           props.options.map((element, i) => {
             return (
-              <div className="text-3xl flex !p-5 border-b" key={i}>
+              <div className="text-3xl flex !p-5 border-b " key={i}>
                 <label
                   htmlFor={element.fieldName}
-                  className="w-full px-5 "
-                  // onClick={() =>
-                  //   dispatch(
-                  //     filterdata({ target: props.target, value: element.value })
-                  //   )
-                  // }
+                  className="w-full px-5 cursor-pointer"
                 >
                   {element.fieldName}
                 </label>
@@ -81,7 +76,7 @@ const FilterField: React.FC<Boolean | Range> = (props) => {
                     )
                   }
                   type="checkbox"
-                  className="w-5 "
+                  className="w-5 cursor-pointer"
                 />
               </div>
             );

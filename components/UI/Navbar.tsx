@@ -10,7 +10,6 @@ import {
   faPhone,
   faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
-import Underline from "../effect/Underline";
 
 const MyNavbar = () => {
   const handelToggle = () => {
@@ -33,7 +32,7 @@ const MyNavbar = () => {
         >
           <Container fluid="lg" className="flex-row flex-lg-row-reverse">
             <Navbar.Brand href="#home" className="fs-3 fw-bold ">
-              <Underline text="حامد" delay={3} />{" "}
+              حامد
               <span style={{ color: "var(--color-one)" }}>رجبی فرجاد</span>
             </Navbar.Brand>
             <Navbar.Toggle

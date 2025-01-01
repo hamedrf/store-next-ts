@@ -32,6 +32,7 @@ const Shop = () => {
             options={[
               { fieldName: "hamed", value: "hamed" },
               { fieldName: "aadsfs", value: "hamed2" },
+              { fieldName: "کتاب", value: "کتاب" },
             ]}
           />
           <FilterField
