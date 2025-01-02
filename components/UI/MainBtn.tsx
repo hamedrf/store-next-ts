@@ -1,7 +1,6 @@
 "use client";
 import gsap from "gsap";
 import { useRef } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export enum colorBtn {
   main = "main",
@@ -41,15 +40,10 @@ const MainBtn = ({
       ref={btnRef}
       onMouseEnter={mouseEnter}
       onMouseLeave={mouseLeave}
-      className={`btn btn-lg btn-${color} ${
-        rounded && "rounded-5"
-      } position-relative`}
+      className={`btn btn-${color} ${rounded && "rounded-xl"} relative`}
       onClick={eventClick || undefined}
     >
-      <span
-        className="position-absolute  top-50 translate-middle w-100 h-100 d-flex justify-content-center align-items-center z-1 "
-        style={{ left: "50%" }}
-      >
+      <span className="absolute  w-full h-full flex justify-center items-center z-10 ">
         {text}
       </span>
       {text}

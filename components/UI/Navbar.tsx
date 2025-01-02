@@ -4,12 +4,8 @@ import MainBtn, { colorBtn } from "./MainBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {
-  faCode,
-  faHome,
-  faPhone,
-  faQuestion,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faShop } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const MyNavbar = () => {
   const handelToggle = () => {
@@ -31,9 +27,11 @@ const MyNavbar = () => {
           className="rounded-5 p-2 col-12 col-lg-auto"
         >
           <Container fluid="lg" className="flex-row flex-lg-row-reverse">
-            <Navbar.Brand href="#home" className="fs-3 fw-bold ">
-              حامد
-              <span style={{ color: "var(--color-one)" }}>رجبی فرجاد</span>
+            <Navbar.Brand className="fs-3 fw-bold ">
+              <Link href={"./"}>
+                نهال
+                <span style={{ color: "var(--color-main)" }}> ای تی </span>
+              </Link>
             </Navbar.Brand>
             <Navbar.Toggle
               aria-controls="basic-navbar-nav"
@@ -50,30 +48,27 @@ const MyNavbar = () => {
               className="flex-row flex-lg-row-reverse"
             >
               <Nav className="mx-4 my-lg-0 my-4 justify-content-center align-items-center flex-column-reverse flex-lg-row">
-                <Nav.Link href="#footer">
-                  {" "}
-                  <span className="me-1">تماس</span>
-                  <FontAwesomeIcon icon={faPhone} />
-                </Nav.Link>
-                <Nav.Link href="#samples">
-                  {" "}
-                  <span className="me-1">نمونه کار</span>
-                  <FontAwesomeIcon icon={faCode} />
-                </Nav.Link>
-                <Nav.Link href="#about">
-                  {" "}
-                  <span className="me-1">درباره</span>
-                  <FontAwesomeIcon icon={faQuestion} />
-                </Nav.Link>
-                <Nav.Link href="#home">
+                <Link
+                  href="./shop"
+                  data-rr-ui-event-key="#shop"
+                  className="nav-link"
+                >
+                  <span className="me-1">فروشگاه</span>
+                  <FontAwesomeIcon icon={faShop} />
+                </Link>
+                <Link
+                  href="./"
+                  data-rr-ui-event-key="#home"
+                  className="nav-link"
+                >
                   <span className="me-1">خانه</span>
                   <FontAwesomeIcon icon={faHome} />
-                </Nav.Link>
+                </Link>
               </Nav>
               <div className="d-flex justify-content-center align-items-center">
-                <a href="tel:+989012226411">
-                  <MainBtn text="ارتباط با ما" color={colorBtn.main} />
-                </a>
+                <Link href={"./login"}>
+                  <MainBtn text="ورود ادمین" color={colorBtn.main} />
+                </Link>
               </div>
             </Navbar.Collapse>
           </Container>

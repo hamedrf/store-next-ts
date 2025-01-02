@@ -1,4 +1,5 @@
 "use client";
+import Comments from "@/components/shop/Comments";
 import MainBtn, { colorBtn } from "@/components/UI/MainBtn";
 import { product } from "@/hook/redux/productsSlice";
 import { useQuery } from "@tanstack/react-query";
@@ -24,7 +25,6 @@ const Product = () => {
   useEffect(() => {
     refetch();
   }, [sulg, refetch, data]);
-  console.log(data);
   return (
     <>
       <div className="2xl:container  mx-auto  grid grid-cols-12 border-x px-3">
@@ -53,6 +53,9 @@ const Product = () => {
             <MainBtn text="خرید" color={colorBtn.second} />
           </div>
         </div>
+      </div>
+      <div className="my-8 2xl:container m-auto">
+        <Comments comment={data?.comments.data} productId={data?.id} />
       </div>
     </>
   );

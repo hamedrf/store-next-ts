@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface comment {
+export interface comment {
   id: number;
   description: string;
-  createdAt: string;
-  users: {
+  created_at: string;
+  user: {
     id: number;
     name: string;
     roleId: string;

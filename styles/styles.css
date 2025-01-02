@@ -1,3 +1,4 @@
+@import "reset.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +10,7 @@ html {
 }
 :root {
   --color-main: #a2d2ff;
-  --color-second: #ede8f5;
+  --color-second: #78f5ac;
   --color-third: #9ad5ca;
   --color-four: #ffeea3;
   --color-gradient-main: #adb9e3;
@@ -228,6 +229,11 @@ html {
 }
 .btn {
   outline: 0.1px solid rgba(0, 0, 0, 0.278);
+}
+.btn span {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 }
 .btn:hover::before {
   width: 100%;
