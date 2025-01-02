@@ -4,7 +4,7 @@ const Login = () => {
       className="h-screen w-screen bg-second flex justify-center items-center"
       style={{ marginTop: "-10vh" }}
     >
-      <div className="!border  border-red-900 rounded-2xl bg-white ">
+      <div className="!border-8  border-red-900 rounded-2xl bg-white ">
         <form className="flex flex-col justify-center items-center">
           <input
             type="text"
