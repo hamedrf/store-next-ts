@@ -13,7 +13,7 @@ const Login = () => {
             placeholder="نام"
           />
           <input
-            type="text"
+            type="password"
             name="description"
             className="border rounded-2xl !py-3 !px-2 mx-2 !my-4"
             placeholder="توضیحات"
