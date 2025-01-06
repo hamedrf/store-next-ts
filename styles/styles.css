@@ -208,24 +208,24 @@ html {
   overflow: hidden;
   border: none;
 }
-.btn-second:hover {
-  background-color: var(--color-second) !important;
-}
-.btn-second:active {
-  background-color: var(--color-second) !important;
-  color: var(--color-txt-dark) !important;
-}
-.btn-second {
-  background-color: var(--color-second) !important;
-  overflow: hidden;
-  border: none;
-}
 .btn-main:hover {
   background-color: var(--color-main);
   color: var(--color-txt-dark);
 }
 .btn-main:active {
   background-color: var(--color-main) !important;
+}
+.btn-second {
+  background-color: var(--color-second) !important;
+  overflow: hidden;
+  border: none;
+}
+.btn-second:hover {
+  background-color: var(--color-second) !important;
+}
+.btn-second:active {
+  background-color: var(--color-second) !important;
+  color: var(--color-txt-dark) !important;
 }
 .btn {
   outline: 0.1px solid rgba(0, 0, 0, 0.278);
