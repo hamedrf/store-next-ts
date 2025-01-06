@@ -40,7 +40,8 @@ const initialState: {
   show: product[];
   all: product[];
   filter: filter[];
-} = { show: [], all: [], filter: [] };
+  cart: product[];
+} = { show: [], all: [], filter: [], cart: [] };
 
 const productsSlice = createSlice({
   name: "products",
@@ -73,9 +74,12 @@ const productsSlice = createSlice({
         state.filter.every((filter) => product[filter.target] === filter.value)
       );
     },
+    addCart: (state, action: { payload: product }) => {
+      state.cart.push(action.payload);
+    },
   },
 });
 
 // Exporting the fetchData action to use it in other parts of the app
-export const { fetchData, filterdata } = productsSlice.actions;
+export const { fetchData, filterdata, addCart } = productsSlice.actions;
 export default productsSlice.reducer;
