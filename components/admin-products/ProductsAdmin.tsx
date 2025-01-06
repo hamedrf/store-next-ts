@@ -20,7 +20,7 @@ const ProductsAdmin = () => {
           return (
             <div
               key={e.id}
-              className="flex justify-between  border-3 rounded-2xl my-10 !mx-5"
+              className="flex justify-between  border-3 rounded-2xl my-10 !mx-5 hover:!border-4 hover:border-gray-300"
             >
               <div className="flex gap-5">
                 {" "}
@@ -39,9 +39,9 @@ const ProductsAdmin = () => {
                 </div>
               </div>{" "}
               <div className="flex items-center gap-2 !mx-7">
-                <MainBtn text="حذف" color={colorBtn.main} />
-                <MainBtn text="حذف" color={colorBtn.main} />
-                <MainBtn text="حذف" color={colorBtn.main} />
+                <MainBtn text="مشاهده" color={colorBtn.second} />
+                <MainBtn text="ویرایش" color={colorBtn.main} />
+                <MainBtn text="حذف" color={colorBtn.delete} />
               </div>{" "}
             </div>
           );

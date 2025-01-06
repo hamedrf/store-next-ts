@@ -5,6 +5,7 @@ import { useRef } from "react";
 export enum colorBtn {
   main = "main",
   second = "second",
+  delete = "delete",
 }
 const MainBtn = ({
   text,

@@ -227,6 +227,18 @@ html {
   background-color: var(--color-second) !important;
   color: var(--color-txt-dark) !important;
 }
+.btn-delete {
+  background-color: rgb(240, 68, 68) !important;
+  overflow: hidden;
+  border: none;
+}
+.btn-delete:hover {
+  background-color: rgb(240, 68, 68) !important;
+}
+.btn-delete:active {
+  background-color: rgb(240, 68, 68) !important;
+  color: var(--color-txt-dark) !important;
+}
 .btn {
   outline: 0.1px solid rgba(0, 0, 0, 0.278);
 }
