@@ -4,7 +4,11 @@ import MainBtn, { colorBtn } from "./MainBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { faHome, faShop } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartArrowDown,
+  faHome,
+  faShop,
+} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 const MyNavbar = () => {
@@ -48,6 +52,14 @@ const MyNavbar = () => {
               className="flex-row flex-lg-row-reverse"
             >
               <Nav className="mx-4 my-lg-0 my-4 justify-content-center align-items-center flex-column-reverse flex-lg-row">
+                <Link
+                  href="./"
+                  data-rr-ui-event-key="#home"
+                  className="nav-link"
+                >
+                  <span className="me-1">سبد خرید</span>
+                  <FontAwesomeIcon icon={faCartArrowDown} />
+                </Link>
                 <Link
                   href="./shop"
                   data-rr-ui-event-key="#shop"
