@@ -1,14 +1,16 @@
 "use client";
 import Comments from "@/components/shop/Comments";
 import MainBtn, { colorBtn } from "@/components/UI/MainBtn";
-import { product } from "@/hook/redux/productsSlice";
+import { addCart, product } from "@/hook/redux/productsSlice";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const Product = () => {
+  const dispatch = useDispatch();
   const param = useParams();
   const sulg = decodeURIComponent(param.sulg as string);
 
@@ -50,7 +52,13 @@ const Product = () => {
               {data?.price}
               <span className="text-black">تومان</span>
             </span>
-            <MainBtn text="خرید" color={colorBtn.second} />
+            <MainBtn
+              text="خرید"
+              color={colorBtn.second}
+              eventClick={() => {
+                dispatch(addCart(data!));
+              }}
+            />
           </div>
         </div>
       </div>

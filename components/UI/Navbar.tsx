@@ -66,7 +66,7 @@ const MyNavbar = () => {
                 </Link>
               </Nav>
               <div className="d-flex justify-content-center align-items-center">
-                <Link href={"./login"}>
+                <Link href={"http://localhost:3000/login"}>
                   <MainBtn text="ورود ادمین" color={colorBtn.main} />
                 </Link>
               </div>
