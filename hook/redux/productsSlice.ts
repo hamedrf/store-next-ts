@@ -31,6 +31,7 @@ export interface product {
   pic: string;
   updated_at: string;
   slug: string;
+  quantityOrdered: number;
 }
 interface filter {
   target: keyof product;
@@ -75,7 +76,15 @@ const productsSlice = createSlice({
       );
     },
     addCart: (state, action: { payload: product }) => {
-      state.cart.push(action.payload);
+      const existingProduct = state.cart.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (existingProduct) {
+        existingProduct.quantityOrdered += 1; // افزایش تعداد محصول موجود
+      } else {
+        state.cart.push({ ...action.payload, quantityOrdered: 1 }); // اضافه کردن محصول جدید
+      }
     },
   },
 });
