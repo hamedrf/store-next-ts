@@ -3,40 +3,40 @@ import ProductsAdmin from "@/components/admin-products/ProductsAdmin";
 import MainBtn, { colorBtn } from "@/components/UI/MainBtn";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import imgProduct from "../../public/img.jpg";
-import { useAutoLogin } from "@/hook/auto_login/useAutoLogin";
+import { useEffect, useState } from "react";
+import imgProduct from "../../public/img2.jpg";
+import axios from "axios";
+import { AutoLogin } from "@/hook/auto_login/AutoLogin";
 
-const handeladd = async (token) => {
+const handeladd = async (token: string) => {
+  console.log(token);
   const formData = new FormData();
   const response = await fetch(imgProduct.src);
   const blob = await response.blob();
-  const file = new File([blob], "img.jpg", { type: blob.type });
+  const file = new File([blob], "img2.jpg", { type: blob.type });
 
-  formData.append("category_id", "1");
+  formData.append("category_id", "2");
   formData.append("name", "یک محصول تستی");
   formData.append(
     "description",
-    "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد."
+    "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، ..."
   );
   formData.append("price", "1213123");
   formData.append("quantity", "12");
   formData.append("pic", file);
 
-  try {
-    const response = await fetch(`https://kharidpardeh.ir/api/products`, {
-      method: "POST",
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${token.token}`,
-      },
-    });
+  console.log(formData);
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error("Error creating product:", errorData);
-      throw new Error("Failed to create product");
-    }
+  try {
+    const response = await axios.post(
+      "https://kharidpardeh.ir/api/products",
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     console.log(response);
     console.log("Product created successfully");
@@ -44,16 +44,25 @@ const handeladd = async (token) => {
     console.error("Error:", error);
   }
 };
+
 const AdminProducts = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const data = searchParams.get("data");
+  const [token, setToken] = useState<string>("");
   const user = data ? JSON.parse(data) : {};
-  const token = useAutoLogin();
 
   useEffect(() => {
-    if (user.username !== "admin" && user.password !== "admin")
+    const fetchToken = async () => {
+      const { token, loading } = await AutoLogin();
+      if (token) setToken(token);
+      console.log(loading);
+    };
+    fetchToken();
+
+    if (user.username !== "admin" && user.password !== "admin") {
       router.push(`/login`);
+    }
   }, [router, user.password, user.username]);
 
   return (

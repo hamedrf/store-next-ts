@@ -1,5 +1,7 @@
+"use client";
+import { AutoLogin } from "@/hook/auto_login/AutoLogin";
 import { comment } from "@/hook/redux/productsSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CommentsProps {
   comment?: comment[];
@@ -10,8 +12,17 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
   const [formData, setFormData] = useState({
     description: "",
   });
+  const [token, setToken] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const fetchToken = async () => {
+      const { token, loading } = await AutoLogin();
+      if (token) setToken(token);
+      console.log(loading);
+    };
+    fetchToken();
+  }, []);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -19,7 +30,10 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
       [name]: value,
     }));
   };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+    token: string
+  ) => {
     e.preventDefault();
     setLoading(true);
 
@@ -30,6 +44,7 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(formData),
         }
@@ -52,7 +67,7 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
   return (
     <>
       <div className="border my-6 !mx-3 rounded-xl py-7 px-9">
-        {comment ? (
+        {comment && comment.length > 0 ? (
           comment!.map((element) => {
             return (
               <div key={element.id}>
@@ -72,11 +87,10 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
         )}
       </div>
       <div className="border my-6 !mx-3 rounded-xl py-7 px-9">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e, token)}>
           <input
             type="text"
             name="name"
-            // value={}
             className="border rounded-2xl !py-3 !px-2 mx-2"
             placeholder="نام"
           />
@@ -91,7 +105,7 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
           <button
             type="submit"
             className="bg-blue-500 text-white rounded-2xl px-4 py-2"
-            disabled={loading}
+            disabled={loading || !token}
           >
             {loading ? "در حال ارسال..." : "ثبت"}
           </button>

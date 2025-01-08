@@ -1,8 +1,9 @@
 import axios from "axios";
+import { useState } from "react";
 
-export const useAutoLogin = async () => {
+export const AutoLogin = async () => {
+  const [loading, setLoading] = useState(true);
   try {
-    // درخواست اول: ارسال شماره تلفن
     const phone = { phone: "09213570822" };
     const { data: codeData } = await axios.post(
       `https://kharidpardeh.ir/api/auth/login`,
@@ -14,38 +15,35 @@ export const useAutoLogin = async () => {
 
     console.log("Code Data:", codeData);
 
-    // بررسی اینکه آیا کد دریافت شده است
     if (!codeData || !codeData.code) {
       throw new Error("Code not received or invalid response from server.");
     }
 
-    // درخواست دوم: تأیید کد دریافتی
     const verify_code = {
       phone: "09213570822",
       code: `${codeData.code}`,
     };
 
-    const { data: token } = await axios.post(
+    const { data } = await axios.post(
       `https://kharidpardeh.ir/api/auth/verify_code`,
       verify_code,
       {
         headers: { "Content-Type": "application/json" },
       }
     );
+    const token: string = data.token;
 
-    console.log("Token:", token);
-
-    // بررسی دریافت توکن
     if (!token) {
       throw new Error("Token not received or invalid response from server.");
     }
 
-    return token;
+    setLoading(false);
+    return { token, loading };
   } catch (error) {
     console.error(
       "Error in autoLogin:",
       error instanceof Error ? error.message : error
     );
-    return null; // در صورت خطا، مقدار نال برگردانید
+    return { token: null, loading: false };
   }
 };
