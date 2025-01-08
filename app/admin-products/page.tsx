@@ -5,59 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import imgProduct from "../../public/img.jpg";
+import { useAutoLogin } from "@/hook/auto_login/useAutoLogin";
 
-const verify = async (phone: string, code: string) => {
-  try {
-    console.log(phone, code);
-    const responseVerify = await fetch(
-      `https://kharidpardeh.ir/api/auth/verify_code`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ phone, code }), // ارسال داده‌های صحیح
-      }
-    );
-
-    if (!responseVerify.ok) {
-      console.error("Error:", responseVerify.statusText);
-    } else {
-      const token = await responseVerify.json();
-      console.log("Token:", token); // نمایش توکن دریافتی
-    }
-  } catch (error) {
-    console.error("Error in verify:", error);
-  }
-};
-
-const autoLogin = async () => {
-  try {
-    const phone = { phone: "09213570822" };
-
-    const response = await fetch(`https://kharidpardeh.ir/api/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(phone),
-    });
-
-    if (!response.ok) {
-      console.error("Error:", response.statusText);
-    } else {
-      const codeData = await response.json();
-      console.log("Code Data:", codeData);
-
-      // فراخوانی تابع verify با مقادیر مناسب
-      await verify(phone.phone, codeData.code);
-    }
-  } catch (error) {
-    console.error("Error in autoLogin:", error);
-  }
-};
-
-const handeladd = async () => {
+const handeladd = async (token) => {
   const formData = new FormData();
   const response = await fetch(imgProduct.src);
   const blob = await response.blob();
@@ -77,6 +27,9 @@ const handeladd = async () => {
     const response = await fetch(`https://kharidpardeh.ir/api/products`, {
       method: "POST",
       body: formData,
+      headers: {
+        Authorization: `Bearer ${token.token}`,
+      },
     });
 
     if (!response.ok) {
@@ -96,13 +49,11 @@ const AdminProducts = () => {
   const searchParams = useSearchParams();
   const data = searchParams.get("data");
   const user = data ? JSON.parse(data) : {};
+  const token = useAutoLogin();
 
   useEffect(() => {
     if (user.username !== "admin" && user.password !== "admin")
       router.push(`/login`);
-
-    autoLogin();
-    console.log("hamed");
   }, [router, user.password, user.username]);
 
   return (
@@ -114,7 +65,7 @@ const AdminProducts = () => {
         <MainBtn
           text=" اضافه کردن محصول +"
           color={colorBtn.second}
-          eventClick={handeladd}
+          eventClick={() => handeladd(token)}
         />
       </div>
       <ProductsAdmin />
