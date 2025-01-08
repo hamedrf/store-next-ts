@@ -12,19 +12,25 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
   const [formData, setFormData] = useState({
     description: "",
   });
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string | null>("");
   const [loading, setLoading] = useState(false);
+  const [canSend, setCanSend] = useState(false);
 
   useEffect(() => {
     const fetchToken = async () => {
-      const { token, loading } = await AutoLogin();
-      if (token) setToken(token);
-      console.log(loading);
+      const token = await AutoLogin();
+      setToken(token);
+      console.log(token);
     };
     fetchToken();
   }, []);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    if (name === "description" && (value.length < 3 || value.length > 256)) {
+      setCanSend(true);
+    } else {
+      setCanSend(false);
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -87,7 +93,7 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
         )}
       </div>
       <div className="border my-6 !mx-3 rounded-xl py-7 px-9">
-        <form onSubmit={(e) => handleSubmit(e, token)}>
+        <form onSubmit={(e) => handleSubmit(e, token!)}>
           <input
             type="text"
             name="name"
@@ -104,8 +110,8 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
           />
           <button
             type="submit"
-            className="bg-blue-500 text-white rounded-2xl px-4 py-2"
-            disabled={loading || !token}
+            className="bg-blue-500 text-white rounded-2xl px-4 py-2 disabled:bg-red-400"
+            disabled={loading || !token || canSend}
           >
             {loading ? "در حال ارسال..." : "ثبت"}
           </button>

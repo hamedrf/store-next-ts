@@ -1,8 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
 
 export const AutoLogin = async () => {
-  const [loading, setLoading] = useState(true);
   try {
     const phone = { phone: "09213570822" };
     const { data: codeData } = await axios.post(
@@ -24,26 +22,26 @@ export const AutoLogin = async () => {
       code: `${codeData.code}`,
     };
 
-    const { data } = await axios.post(
+    const { data: token } = await axios.post(
       `https://kharidpardeh.ir/api/auth/verify_code`,
       verify_code,
       {
         headers: { "Content-Type": "application/json" },
       }
     );
-    const token: string = data.token;
+
+    console.log("Token:", token);
 
     if (!token) {
       throw new Error("Token not received or invalid response from server.");
     }
 
-    setLoading(false);
-    return { token, loading };
+    return token.token;
   } catch (error) {
-    console.error(
+    console.log(
       "Error in autoLogin:",
       error instanceof Error ? error.message : error
     );
-    return { token: null, loading: false };
+    return null;
   }
 };

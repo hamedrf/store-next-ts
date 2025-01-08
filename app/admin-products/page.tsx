@@ -9,7 +9,6 @@ import axios from "axios";
 import { AutoLogin } from "@/hook/auto_login/AutoLogin";
 
 const handeladd = async (token: string) => {
-  console.log(token);
   const formData = new FormData();
   const response = await fetch(imgProduct.src);
   const blob = await response.blob();
@@ -54,9 +53,8 @@ const AdminProducts = () => {
 
   useEffect(() => {
     const fetchToken = async () => {
-      const { token, loading } = await AutoLogin();
+      const token = await AutoLogin();
       if (token) setToken(token);
-      console.log(loading);
     };
     fetchToken();
 
