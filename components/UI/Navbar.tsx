@@ -1,6 +1,6 @@
 "use client";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import MainBtn, { colorBtn } from "./MainBtn";
+import MainBtn from "./MainBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -79,7 +79,7 @@ const MyNavbar = () => {
               </Nav>
               <div className="d-flex justify-content-center align-items-center">
                 <Link href={"http://localhost:3000/login"}>
-                  <MainBtn text="ورود ادمین" color={colorBtn.main} />
+                  <MainBtn text="ورود ادمین" color="main" />
                 </Link>
               </div>
             </Navbar.Collapse>

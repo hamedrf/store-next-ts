@@ -1,6 +1,6 @@
 "use client";
 import Comments from "@/components/shop/Comments";
-import MainBtn, { colorBtn } from "@/components/UI/MainBtn";
+import MainBtn from "@/components/UI/MainBtn";
 import { addCart, product } from "@/hook/redux/productsSlice";
 import { RootState } from "@/hook/redux/store";
 import { useQuery } from "@tanstack/react-query";
@@ -57,7 +57,7 @@ const Product = () => {
             </span>
             <MainBtn
               text="خرید"
-              color={colorBtn.second}
+              color="second"
               eventClick={() => {
                 dispatch(addCart(data!));
               }}

@@ -3,7 +3,7 @@ import { RootState } from "@/hook/redux/store";
 import FetchProducts from "../api/FetchProducts";
 import { useSelector } from "react-redux";
 import Image from "next/image";
-import MainBtn, { colorBtn } from "../UI/MainBtn";
+import MainBtn from "../UI/MainBtn";
 import { useEffect } from "react";
 
 const ProductsAdmin = () => {
@@ -39,9 +39,9 @@ const ProductsAdmin = () => {
                 </div>
               </div>{" "}
               <div className="flex items-center gap-2 !mx-7">
-                <MainBtn text="مشاهده" color={colorBtn.second} />
-                <MainBtn text="ویرایش" color={colorBtn.main} />
-                <MainBtn text="حذف" color={colorBtn.delete} />
+                <MainBtn text="مشاهده" color="second" />
+                <MainBtn text="ویرایش" color="main" />
+                <MainBtn text="حذف" color="delete" />
               </div>{" "}
             </div>
           );

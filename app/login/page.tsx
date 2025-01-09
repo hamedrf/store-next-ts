@@ -1,5 +1,5 @@
 "use client";
-import MainBtn, { colorBtn } from "@/components/UI/MainBtn";
+import MainBtn from "@/components/UI/MainBtn";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -41,11 +41,7 @@ const Login = () => {
             className="border rounded-2xl !py-3 !px-2 mx-2 !my-4"
             placeholder="رمز ورود"
           />
-          <MainBtn
-            text="ورود"
-            color={colorBtn.main}
-            eventClick={handleNavigation}
-          />
+          <MainBtn text="ورود" color="main" eventClick={handleNavigation} />
         </div>
       </div>
     </div>

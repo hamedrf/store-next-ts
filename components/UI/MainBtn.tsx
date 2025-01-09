@@ -2,20 +2,19 @@
 import gsap from "gsap";
 import { useRef } from "react";
 
-export enum colorBtn {
-  main = "main",
-  second = "second",
-  delete = "delete",
-}
+type colorBtn = "main" | "second" | "delete";
+
 const MainBtn = ({
   text,
   color,
   rounded = true,
+  disabled,
   eventClick,
 }: {
   text: string;
   color: colorBtn;
   rounded?: boolean;
+  disabled?: boolean;
   eventClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }) => {
   const btnRef = useRef(null);
@@ -43,6 +42,7 @@ const MainBtn = ({
       onMouseLeave={mouseLeave}
       className={`btn btn-${color} ${rounded && "rounded-xl"} relative`}
       onClick={eventClick || undefined}
+      disabled={disabled}
     >
       <span className="absolute  w-full h-full flex justify-center items-center z-10 ">
         {text}

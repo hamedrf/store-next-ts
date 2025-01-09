@@ -1,6 +1,6 @@
 "use client";
 import ProductsAdmin from "@/components/admin-products/ProductsAdmin";
-import MainBtn, { colorBtn } from "@/components/UI/MainBtn";
+import MainBtn from "@/components/UI/MainBtn";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -25,23 +25,6 @@ const handeladd = async (token: string) => {
   formData.append("pic", file);
 
   console.log(formData);
-
-  try {
-    const response = await axios.post(
-      "https://kharidpardeh.ir/api/products",
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    console.log(response);
-    console.log("Product created successfully");
-  } catch (error) {
-    console.error("Error:", error);
-  }
 };
 
 const AdminProducts = () => {
@@ -71,7 +54,7 @@ const AdminProducts = () => {
       <div className="w-full my-10 flex justify-center">
         <MainBtn
           text=" اضافه کردن محصول +"
-          color={colorBtn.second}
+          color="second"
           eventClick={() => handeladd(token)}
         />
       </div>

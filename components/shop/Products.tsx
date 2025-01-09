@@ -1,7 +1,7 @@
 import { product } from "@/hook/redux/productsSlice";
 import Image from "next/image";
 import Link from "next/link";
-import MainBtn, { colorBtn } from "../UI/MainBtn";
+import MainBtn from "../UI/MainBtn";
 
 const Products = ({ product }: { product: product }) => {
   return (
@@ -27,7 +27,7 @@ const Products = ({ product }: { product: product }) => {
           </div>
           <div className="flex justify-between px-6">
             <h3>{product.price} تومان </h3>
-            <MainBtn text="مشاهده" color={colorBtn.main} />
+            <MainBtn text="مشاهده" color="main" />
           </div>
         </div>
       </div>
