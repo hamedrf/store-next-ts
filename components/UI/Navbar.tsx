@@ -53,7 +53,7 @@ const MyNavbar = () => {
             >
               <Nav className="mx-4 my-lg-0 my-4 justify-content-center align-items-center flex-column-reverse flex-lg-row">
                 <Link
-                  href="./"
+                  href="http://localhost:3000"
                   data-rr-ui-event-key="#home"
                   className="nav-link"
                 >
@@ -61,7 +61,7 @@ const MyNavbar = () => {
                   <FontAwesomeIcon icon={faCartArrowDown} />
                 </Link>
                 <Link
-                  href="./shop"
+                  href="http://localhost:3000/shop"
                   data-rr-ui-event-key="#shop"
                   className="nav-link"
                 >
@@ -69,7 +69,7 @@ const MyNavbar = () => {
                   <FontAwesomeIcon icon={faShop} />
                 </Link>
                 <Link
-                  href="./"
+                  href="http://localhost:3000"
                   data-rr-ui-event-key="#home"
                   className="nav-link"
                 >

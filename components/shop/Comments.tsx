@@ -14,7 +14,7 @@ const Comments: React.FC<CommentsProps> = ({ comment, productId }) => {
   });
   const [token, setToken] = useState<string | null>("");
   const [loading, setLoading] = useState(false);
-  const [canSend, setCanSend] = useState(false);
+  const [canSend, setCanSend] = useState(true);
 
   useEffect(() => {
     const fetchToken = async () => {
