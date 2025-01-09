@@ -19,6 +19,7 @@ const EditorProducts = () => {
   const [token, setToken] = useState<string>("");
   const param = useParams();
   const sulg = decodeURIComponent(param.sulg as string);
+  const isedit = sulg !== "محصول جدید";
 
   const [formData, setFormData] = useState<FormData>({
     category_id: "",
@@ -39,7 +40,7 @@ const EditorProducts = () => {
   const { data } = useQuery<product, Error>({
     queryKey: ["product", sulg],
     queryFn: fetchProduct,
-    enabled: Boolean(sulg !== "محصول جدید"),
+    enabled: Boolean(isedit),
   });
 
   useEffect(() => {
@@ -50,11 +51,12 @@ const EditorProducts = () => {
         description: data.description,
         price: `${data.price}`,
         quantity: `${data.quantity}`,
-        pic: data.pic,
+        pic: null,
+        ...(isedit && { _method: "patch" }),
       };
       setFormData(newFormdata);
     }
-  }, [data]);
+  }, [data, isedit]);
 
   const [errors, setErrors] = useState({
     category_id: false,
@@ -62,7 +64,7 @@ const EditorProducts = () => {
     description: false,
     price: false,
     quantity: false,
-    pic: false,
+    pic: isedit ? false : true,
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
@@ -77,15 +79,16 @@ const EditorProducts = () => {
       price: isNaN(Number(formData.price)) || Number(formData.price) < 10000,
       quantity:
         isNaN(Number(formData.quantity)) || Number(formData.quantity) < 1,
-      pic:
-        !formData.pic ||
-        ![
-          "image/jpeg",
-          "image/png",
-          "image/svg+xml",
-          "image/jpg",
-          "image/mpeg",
-        ].includes(formData.pic.type),
+      pic: !isedit
+        ? !formData.pic ||
+          ![
+            "image/jpeg",
+            "image/png",
+            "image/svg+xml",
+            "image/jpg",
+            "image/mpeg",
+          ].includes(formData.pic.type)
+        : false,
     };
     setErrors(newErrors);
     setIsFormValid(Object.values(newErrors).every((error) => !error));
@@ -118,8 +121,14 @@ const EditorProducts = () => {
     if (isFormValid) {
       const form = new FormData();
       Object.keys(formData).forEach((key) => {
-        if (key === "pic" && formData.pic) {
-          form.append(key, formData.pic);
+        if (key === "pic") {
+          if (!isedit && formData.pic) {
+            form.append(key, formData.pic);
+          } else {
+            delete formData[key as keyof FormData];
+            console.log("deleteererlkelrkjelrjlrje");
+          }
+          console.log(formData);
         } else {
           form.append(key, formData[key as keyof FormData]?.toString() || "");
         }
@@ -128,7 +137,7 @@ const EditorProducts = () => {
       console.log("Form submitted:", Object.fromEntries(form.entries()));
       try {
         const response = await axios.post(
-          "https://kharidpardeh.ir/api/products",
+          `https://kharidpardeh.ir/api/products${isedit ? `/${sulg}` : ""}`,
           form,
           {
             headers: {
@@ -210,16 +219,20 @@ const EditorProducts = () => {
               errors.quantity ? "!border-red-500" : "border-gray-300"
             }`}
           />
-          <label htmlFor="pic">عکس محصول</label>
-          <input
-            type="file"
-            name="pic"
-            id="pic"
-            onChange={handleChange}
-            className={`border ${
-              errors.pic ? "!border-red-500" : "border-gray-300"
-            }`}
-          />
+          {!isedit && (
+            <>
+              <label htmlFor="pic">عکس محصول</label>
+              <input
+                type="file"
+                name="pic"
+                id="pic"
+                onChange={handleChange}
+                className={`border ${
+                  errors.pic ? "!border-red-500" : "border-gray-300"
+                }`}
+              />
+            </>
+          )}
           <MainBtn
             text="اضافه کردن"
             color={isFormValid ? "main" : "delete"}
