@@ -4,14 +4,39 @@ import FetchProducts from "../api/FetchProducts";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import MainBtn from "../UI/MainBtn";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import axios from "axios";
+import { AutoLogin } from "@/hook/auto_login/AutoLogin";
 
 const ProductsAdmin = () => {
   const produts = useSelector((state: RootState) => state.productsSlice);
+  const [token, setToken] = useState<string>("");
 
   useEffect(() => {
-    console.log(produts);
-  });
+    const fetchToken = async () => {
+      const token = await AutoLogin();
+      if (token) setToken(token);
+    };
+    fetchToken();
+  }, []);
+  const handeldelet = async (sulg: string, token: string) => {
+    try {
+      const response = await axios.delete(
+        `https://kharidpardeh.ir/api/products/${sulg}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response);
+      console.log("Product created successfully");
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   return (
     <div>
       <FetchProducts />
@@ -39,9 +64,18 @@ const ProductsAdmin = () => {
                 </div>
               </div>{" "}
               <div className="flex items-center gap-2 !mx-7">
-                <MainBtn text="مشاهده" color="second" />
-                <MainBtn text="ویرایش" color="main" />
-                <MainBtn text="حذف" color="delete" />
+                <Link href={`http://localhost:3000/admin-products/${e.slug}`}>
+                  <MainBtn text="ویرایش" color="main" />
+                </Link>
+
+                <Link href={`http://localhost:3000/shop/${e.slug}`}>
+                  <MainBtn text="مشاهده" color="second" />
+                </Link>
+                <MainBtn
+                  text="حذف"
+                  color="delete"
+                  eventClick={() => handeldelet(e.slug, token)}
+                />
               </div>{" "}
             </div>
           );

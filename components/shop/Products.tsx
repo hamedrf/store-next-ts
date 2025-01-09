@@ -5,7 +5,10 @@ import MainBtn from "../UI/MainBtn";
 
 const Products = ({ product }: { product: product }) => {
   return (
-    <Link href={`shop/${product.name}`} className="no-underline text-black">
+    <Link
+      href={`http://localhost:3000/shop/${product.name}`}
+      className="no-underline text-black"
+    >
       <div className="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-1 md:aspect-[3/4] overflow-hidden justify-between border hover:!border-2 rounded-3xl flex  md:flex-col py-5">
         <div
           className=""
