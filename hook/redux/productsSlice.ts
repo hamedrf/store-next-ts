@@ -28,7 +28,7 @@ export interface product {
   name: string;
   price: number;
   quantity: number;
-  pic: string;
+  pic: File | null;
   updated_at: string;
   slug: string;
   quantityOrdered: number;

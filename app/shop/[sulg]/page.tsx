@@ -2,19 +2,17 @@
 import Comments from "@/components/shop/Comments";
 import MainBtn from "@/components/UI/MainBtn";
 import { addCart, product } from "@/hook/redux/productsSlice";
-import { RootState } from "@/hook/redux/store";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Product = () => {
   const dispatch = useDispatch();
   const param = useParams();
   const sulg = decodeURIComponent(param.sulg as string);
-  const produts = useSelector((state: RootState) => state.productsSlice);
 
   const fetchProduct = async (): Promise<product> => {
     const response = await axios.get(
@@ -27,9 +25,8 @@ const Product = () => {
     queryFn: fetchProduct,
   });
   useEffect(() => {
-    console.log(produts);
     refetch();
-  }, [sulg, refetch, data, produts]);
+  }, [sulg, refetch, data]);
   return (
     <>
       <div className="2xl:container  mx-auto  grid grid-cols-12 border-x px-3">

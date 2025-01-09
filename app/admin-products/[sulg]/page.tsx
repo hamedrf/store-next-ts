@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import MainBtn from "@/components/UI/MainBtn";
 import axios from "axios";
 import { AutoLogin } from "@/hook/auto_login/AutoLogin";
+import { useParams } from "next/navigation";
+import { product } from "@/hook/redux/productsSlice";
+import { useQuery } from "@tanstack/react-query";
 interface FormData {
   category_id: string;
   name: string;
@@ -14,6 +17,9 @@ interface FormData {
 
 const EditorProducts = () => {
   const [token, setToken] = useState<string>("");
+  const param = useParams();
+  const sulg = decodeURIComponent(param.sulg as string);
+
   const [formData, setFormData] = useState<FormData>({
     category_id: "",
     name: "",
@@ -22,6 +28,33 @@ const EditorProducts = () => {
     quantity: "",
     pic: null,
   });
+
+  const fetchProduct = async (): Promise<product> => {
+    const response = await axios.get(
+      `https://kharidpardeh.ir/api/products/${sulg}`
+    );
+    return response.data.data.product;
+  };
+
+  const { data } = useQuery<product, Error>({
+    queryKey: ["product", sulg],
+    queryFn: fetchProduct,
+    enabled: Boolean(sulg !== "محصول جدید"),
+  });
+
+  useEffect(() => {
+    if (data) {
+      const newFormdata: FormData = {
+        category_id: "2",
+        name: data.name,
+        description: data.description,
+        price: `${data.price}`,
+        quantity: `${data.quantity}`,
+        pic: data.pic,
+      };
+      setFormData(newFormdata);
+    }
+  }, [data]);
 
   const [errors, setErrors] = useState({
     category_id: false,
@@ -54,7 +87,6 @@ const EditorProducts = () => {
           "image/mpeg",
         ].includes(formData.pic.type),
     };
-    console.log(formData.pic?.type);
     setErrors(newErrors);
     setIsFormValid(Object.values(newErrors).every((error) => !error));
   };

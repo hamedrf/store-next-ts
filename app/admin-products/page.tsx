@@ -4,28 +4,11 @@ import MainBtn from "@/components/UI/MainBtn";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import imgProduct from "../../public/img2.jpg";
-import axios from "axios";
 import { AutoLogin } from "@/hook/auto_login/AutoLogin";
 
-const handeladd = async (token: string) => {
-  const formData = new FormData();
-  const response = await fetch(imgProduct.src);
-  const blob = await response.blob();
-  const file = new File([blob], "img2.jpg", { type: blob.type });
+// const handeladd = async () => {
 
-  formData.append("category_id", "2");
-  formData.append("name", "یک محصول تستی");
-  formData.append(
-    "description",
-    "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، ..."
-  );
-  formData.append("price", "1213123");
-  formData.append("quantity", "12");
-  formData.append("pic", file);
-
-  console.log(formData);
-};
+// };
 
 const AdminProducts = () => {
   const router = useRouter();
@@ -39,12 +22,13 @@ const AdminProducts = () => {
       const token = await AutoLogin();
       if (token) setToken(token);
     };
+    console.log(token);
     fetchToken();
 
     if (user.username !== "admin" && user.password !== "admin") {
       router.push(`/login`);
     }
-  }, [router, user.password, user.username]);
+  }, [router, user.password, user.username, token]);
 
   return (
     <div>
@@ -55,7 +39,7 @@ const AdminProducts = () => {
         <MainBtn
           text=" اضافه کردن محصول +"
           color="second"
-          eventClick={() => handeladd(token)}
+          // eventClick={}
         />
       </div>
       <ProductsAdmin />
