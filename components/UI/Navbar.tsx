@@ -53,7 +53,7 @@ const MyNavbar = () => {
             >
               <Nav className="mx-4 my-lg-0 my-4 justify-content-center align-items-center flex-column-reverse flex-lg-row">
                 <Link
-                  href="http://localhost:3000"
+                  href="http://localhost:3000/cart"
                   data-rr-ui-event-key="#home"
                   className="nav-link"
                 >
