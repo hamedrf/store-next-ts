@@ -163,7 +163,7 @@ const EditorProducts = () => {
         className="flex w-2/4 h-2/4 bg-white rounded-3xl border-4 border-green-900 overflow-hidden"
         onSubmit={handleSubmit}
       >
-        <div className="w-2/4 flex flex-col justify-evenly px-8 bg-blue-500">
+        <div className="w-full lg:w-2/4 flex flex-col justify-evenly px-8 bg-blue-700 text-white">
           <label htmlFor="category_id">شناسه دسته‌بندی</label>
           <input
             type="text"
@@ -171,8 +171,8 @@ const EditorProducts = () => {
             id="category_id"
             value={formData.category_id}
             onChange={handleChange}
-            className={`border ${
-              errors.category_id ? "!border-red-500" : "border-gray-300"
+            className={`rounded-2xl px-3 text-black border ${
+              errors.category_id ? "!border-red-500" : "border-gray-300 "
             }`}
           />
           <label htmlFor="name">اسم محصول</label>
@@ -182,8 +182,8 @@ const EditorProducts = () => {
             id="name"
             value={formData.name}
             onChange={handleChange}
-            className={`border ${
-              errors.name ? "!border-red-500" : "border-gray-300"
+            className={`rounded-2xl px-3 text-black border ${
+              errors.name ? "!border-red-500" : "border-gray-300 "
             }`}
           />
           <label htmlFor="description">توضیحات محصول</label>
@@ -193,8 +193,8 @@ const EditorProducts = () => {
             id="description"
             value={formData.description}
             onChange={handleChange}
-            className={`border ${
-              errors.description ? "!border-red-500" : "border-gray-300"
+            className={`rounded-2xl px-3 text-black border ${
+              errors.description ? "!border-red-500" : "border-gray-300 "
             }`}
           />
           <label htmlFor="price">قیمت محصول (تومان)</label>
@@ -204,8 +204,8 @@ const EditorProducts = () => {
             id="price"
             value={formData.price}
             onChange={handleChange}
-            className={`border ${
-              errors.price ? "!border-red-500" : "border-gray-300"
+            className={`rounded-2xl px-3 text-black border ${
+              errors.price ? "!border-red-500" : "border-gray-300 "
             }`}
           />
           <label htmlFor="quantity">تعداد موجودی</label>
@@ -215,8 +215,8 @@ const EditorProducts = () => {
             id="quantity"
             value={formData.quantity}
             onChange={handleChange}
-            className={`border ${
-              errors.quantity ? "!border-red-500" : "border-gray-300"
+            className={`rounded-2xl px-3 text-black border ${
+              errors.quantity ? "!border-red-500" : "border-gray-300 "
             }`}
           />
           {!isedit && (
@@ -227,8 +227,8 @@ const EditorProducts = () => {
                 name="pic"
                 id="pic"
                 onChange={handleChange}
-                className={`border ${
-                  errors.pic ? "!border-red-500" : "border-gray-300"
+                className={`rounded-2xl px-3 text-black border ${
+                  errors.pic ? "!border-red-500" : "border-gray-300 "
                 }`}
               />
             </>
