@@ -22,7 +22,7 @@ const Login = () => {
       className="h-screen w-screen bg-second flex justify-center items-center"
       style={{ marginTop: "-10vh" }}
     >
-      <div className=" !border-8 !border-green-900 rounded-2xl bg-white h-2/4 w-2/4 lg:w-1/4 md:w-1/3 flex justify-center  flex-col md:px-10 ">
+      <div className=" !border-8 !border-green-900 rounded-2xl bg-white h-2/4  w-5/6 md:w-4/5 lg:w-3/4 xl:w-1/3  flex justify-center  flex-col md:px-10 ">
         <div className="mb-16 text-center font-bold text-2xl">
           پنل ورود مدیر
         </div>
