@@ -40,7 +40,9 @@ const MainBtn = ({
       ref={btnRef}
       onMouseEnter={mouseEnter}
       onMouseLeave={mouseLeave}
-      className={`btn btn-${color} ${rounded && "rounded-xl"} relative`}
+      className={`btn btn-${color} ${
+        rounded && "rounded-xl"
+      } relative box-border`}
       onClick={eventClick || undefined}
       disabled={disabled}
     >

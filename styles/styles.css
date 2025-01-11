@@ -205,7 +205,6 @@ html {
 .btn-main {
   background-color: var(--color-main) !important;
   color: var(--color-txt-dark) !important;
-  overflow: hidden;
   border: none;
 }
 .btn-main:hover {
