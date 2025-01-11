@@ -45,9 +45,9 @@ const ProductsAdmin = () => {
           return (
             <div
               key={e.id}
-              className="flex justify-between  border-3 rounded-2xl my-10 !mx-5 hover:!border-4 hover:border-gray-300"
+              className="flex justify-between flex-col lg:flex-row border-3 rounded-2xl my-10 !mx-5 hover:!border-4 hover:border-gray-300 items-center gap-4 p-5 overflow-hidden"
             >
-              <div className="flex gap-5">
+              <div className="flex gap-5 items-center flex-col lg:flex-row">
                 {" "}
                 <div className="h-30">
                   <Image
